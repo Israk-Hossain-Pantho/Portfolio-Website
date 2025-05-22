@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Israk Hossain Pantho | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+
+    /* footer  css*/
+    .social-link {
+  position: relative;
+  color: #eee;
+  font-size: 24px;
+  margin: 0 12px;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover,
+.social-link:focus {
+  color: #1da1f2;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* Tooltip text container */
+.social-link .tooltip-text {
+  visibility: hidden;
+  width: max-content;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Tooltip arrow */
+.social-link .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* bottom of tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+/* Show tooltip on hover/focus */
+.social-link:hover .tooltip-text,
+.social-link:focus .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+    
+    /* Send massage css*/
+    /* Popup Styles */
+  .popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+  }
+
+  .popup-message {
+  white-space: pre-line;
+}
+
+.popup-content br {
+    content: "";
+    display: block;
+    margin: 10px 0;
+  }
+  .popup-content em {
+    color: #666;
+    font-size: 0.9em;
+  }
+  
+  .popup.show {
+    opacity: 1;
+  }
+  
+  .popup.success {
+    background: #4CAF50;
+    color: white;
+  }
+  
+  .popup.error {
+    background: #f44336;
+    color: white;
+  }
+  
+  /* Button Loading State */
+  #submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+
+    :root {
+      --primary: #2dd4bf;
+      --primary-dark: #1cb4a0;
+      --dark-blue: #0a1526;
+      --darker-blue: #0e1d36;
+      --medium-blue: #12263e;
+      --light-blue: #1e3a5f;
+      --text-light: #f0f9ff;
+      --text-muted: #94a3b8;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      color: var(--text-light);
+      background-color: var(--darker-blue);
+      scroll-behavior: smooth;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* Navigation */
+    nav {
+      padding: 1.5rem 2rem;
+      backdrop-filter: blur(10px);
+      background-color: rgba(10, 21, 38, 0.8);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    nav a {
+      position: relative;
+      padding: 0.5rem 0;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      padding: 5rem 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      flex-wrap: nowrap; /* Ensure side-by-side layout */
+    }
+
+      .hero-content {
+        flex: 1;
+        max-width: 60%;
+      }
+          
+    /* Hero title animations */
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, var(--primary), var(--text-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* First h1 animation */
+.hero-title:first-child {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem; /* space between buttons */
+  margin-top: 0.5rem;
+}
+
+
+/* Second h2 animation */
+.hero-title:nth-child(2) {
+  animation: fadeInUp 0.8s ease forwards 0.8s; /* Starts after first animation */
+}
+
+/* Keyframes for fadeInUp animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Keep your existing wave animation */
+.wave {
+  display: inline-block;
+  animation: wave 2s infinite;
+  transform-origin: 70% 70%;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  color: black !important;
+  text-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(14deg); }
+  30% { transform: rotate(-8deg); }
+  45% { transform: rotate(14deg); }
+  60% { transform: rotate(-4deg); }
+  75% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    button, .btn {
+      background-color: var(--primary);
+      color: #000;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+    
+    button:hover, .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(45, 212, 191, 0.4);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #000;
+    }
+    
+      .hero-avatar {
+      flex-shrink: 0;
+      width: 280px;
+      height: 280px;
+      border-radius: 20% 80% 30% 70% / 60% 30% 70% 40%;
+      background: linear-gradient(135deg, var(--primary), var(--light-blue));
+      box-shadow: 0 10px 30px rgba(45, 212, 191, 0.3);
+      transition: transform 0.5s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4rem;
+      font-weight: 700;
+      color: white;
+    }
+    
+    .hero-avatar:hover {
+      transform: rotate(5deg) scale(1.05);
+    }
+    
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      scroll-margin-top: 80px;
+    }
+    
+    .section-title {
+      position: relative;
+      padding-bottom: 0.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      border-radius: 2px;
+    }
+    
+    /* Cards */
+    .card {
+      background-color: var(--medium-blue);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    /* Skills Section */
+    .skills-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    .skills, .languages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    
+    .skills span, .languages span {
+      background-color: var(--light-blue);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+    
+    .skills span:hover, .languages span:hover {
+      background-color: var(--primary);
+      color: #000;
+      transform: scale(1.05);
+    }
+    
+    /* Projects Section */
+    
+/* Projects Section - Enhanced Dark & Blurry Hover */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  height: 250px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8); /* Solid dark overlay */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.project-card:hover .project-image {
+  filter: blur(8px) brightness(0.4); /* Strong blur + darken */
+  transform: scale(1.03); /* Very subtle zoom */
+}
+
+.project-card:hover .project-overlay {
+  transform: translateY(0);
+  background: rgba(0, 0, 0, 0.85); /* Slightly darker when active */
+}
+
+/* Text animation */
+.project-overlay-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease 0.2s;
+}
+
+.project-card:hover .project-overlay-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button styling */
+.project-overlay .btn {
+  align-self: flex-start;
+  margin-top: 1rem;
+  background-color: var(--primary);
+  border: none;
+}
+    
+    /* Contact Section */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background-color: var(--medium-blue);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    
+    .contact-form input, 
+    .contact-form textarea {
+      width: 100%;
+      background-color: var(--medium-blue);
+      border: 1px solid var(--light-blue);
+      color: white;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      transition: border 0.3s ease;
+    }
+    
+    .contact-form input:focus, 
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
+    }
+    
+    .contact-form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .contact-form button {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark-blue);
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-top: 3rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--medium-blue);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background-color: var(--primary);
+      color: #000;
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 3rem 2rem;
+      }
+      
+      .hero-buttons {
+        justify-content: center;
+      }
+      
+      .hero-avatar {
+        margin-bottom: 2rem;
+        width: 220px;
+        height: 220px;
+        font-size: 3rem;
+      }
+      
+      .about-content, 
+      .skills-container,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-avatar {
+    margin-top: 2rem;
+  }
+    }
+    
+    @media (max-width: 576px) {
+      nav ul {
+        display: none; /* Consider adding a mobile menu */
+      }
+      
+      .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      button, .btn {
+        width: 100%;
+      }
+    }
+
+
+    /* Typing animation for the title */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    /* Blinking cursor animation */
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--primary) }
+    }
+    
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Apply animations to hero section */
+    .hero-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, var(--primary), var(--text-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+    
+    .hero-subtitle {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 1.5s;
+    }
+    
+    .hero-content p {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2s;
+    }
+    
+    .hero-buttons {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2.5s;
+    }
+    
+    .hero-avatar {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 1s;
+    }
+    
+    /* Quote animation */
+    .quote {
+      position: relative;
+      margin: 2rem 0;
+      padding-left: 1.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2.2s;
+    }
+    
+    .quote::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    .quote-author {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    /* Add these new styles for the animated background */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      background-color: rgba(45, 212, 191, 0.2);
+      border-radius: 50%;
+      animation: float linear infinite;
+    }
+    
+    /* Create particles of different sizes and animations */
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+    
+    /* Make sure content stays above particles */
+    .hero-content, .hero-avatar {
+      position: relative;
+      z-index: 1;
+    }
+
+
+
+     /* Unique Digital Neuron Animation */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse at center, #0a1526 0%, #0e1d36 100%);
+    }
+
+    .image {
+      
+      width: 50%;
+      height: 50%;
+      right: 10;
+      
+    }
+
+    .neuron-network {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .neuron {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px 2px var(--primary);
+      filter: blur(0.5px);
+    }
+
+    .connection {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      transform-origin: left center;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    /* Pulsing animation for neurons */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    /* Connection animation */
+    @keyframes connect {
+      0% { transform: scaleX(0); opacity: 0; }
+      20%, 80% { opacity: 0.3; }
+      100% { transform: scaleX(1); opacity: 0; }
+    }
+
+    /* Floating code snippets */
+    .code-snippet {
+      position: absolute;
+      color: rgba(45,212,191,0.15);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      font-weight: bold;
+      white-space: nowrap;
+      animation: floatUp 25s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      to { transform: translateY(-100vh); }
+    }
+
+    .avatar-image {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: inherit;
+    }
+
+  /* Animation for paragraph in home section*/
+  /* Typewriter container */
+.typewriter-container {
+  min-height: 2.5em;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Typewriter animation */
+/* Typewriter styles */
+.skills-display {
+  text-align: left;
+  margin: 2rem 0;
+  min-height: 3rem; /* Ensure consistent height during animation */
+}
+
+.skill-text {
+  font-size: 1.8rem; /* Larger size */
+  color: var(--primary);
+  font-weight: 600;
+  display: inline-block;
+  position: relative;
+  padding-left: 1.5rem;
+  border-right: 3px solid var(--primary); /* Cursor */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.skill-text::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 80%;
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+/* Cursor blink animation */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--primary); }
+}
+
+.typewriter {
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+/* CSS for Tools */
+/* Tools Section - Minimal Version */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: rgb(35, 56, 69);
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  background-color: var(--light-blue);
+}
+
+.tool-card img {
+  width: 150px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.tool-card span {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+  .tools-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+  
+  .tool-card img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .tool-card span {
+    font-size: 0.8rem;
+  }
+}
+  </style>
+</head>
+<body>
+  
+  <nav>
+    <div class="logo">PANTHO</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Hi There! <span class="wave">👋</span></h1>
+    <h2 class="hero-title">I'M ISRAK HOSSAIN PANTHO</h2>
+    <p class="skill-text" id="typewriter-text"></p>
+
+    <div class="hero-buttons">
+      <a href="https://github.com/Israk-Hossain-Pantho/Portfolio-And-Resume/raw/main/ISRAK-HOSSAIN-PANTHO.pdf" download class="btn">Download Resume</a>
+      <a href="https://github.com/Israk-Hossain-Pantho/Portfolio-And-Resume/blob/main/ISRAK-HOSSAIN-PANTHO.pdf" target="_blank" class="btn btn-outline">View Resume</a>
+    </div>
+  </div>
+
+  <div class="hero-avatar">
+    <img src="home icon1.png" alt="Israk Hossain Pantho" class="avatar-image">
+  </div>
+</header>
+
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+      <div class="card">
+        <h3>Who I Am</h3>
+        <p>Hi Everyone, I am Israk Hossain Pantho from Dhaka, Bangladesh.</p>
+        <p>I'm currently pursuing my BSc in Computer Science and Engineering at AIUB.</p>
+        <p>Apart from coding, here are a few things I really enjoy:</p>
+          <ul style="margin-left: 20px;">
+            <li>Exploring new technologies</li>
+            <li>Playing football and badminton</li>
+            <li>Travelling and discovering new places</li>
+          </ul>
+                  
+      </div>
+      <div class="card">
+        <h3>What I Do</h3>
+        <p>I enjoy creating smart and practical software solutions. My work includes building web applications, designing and managing databases, automating tasks, and working with basic AI and machine learning tools.</p>
+        <p>I'm always looking for ways to make systems more efficient and user-friendly, and I enjoy working in a team to turn ideas into real applications.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="section-title">Education & Skills</h2>
+    <div class="skills-container">
+      <div class="card">
+        <h3>Education</h3>
+        <h4>BSc in Computer Science & Engineering</h4>
+        <p>American International University - Bangladesh (AIUB)</p>
+        <p><strong>CGPA:</strong> 3.63</p>
+      </div>
+      <div class="card">
+        <h3>Technical Skills</h3>
+        <div class="skills">
+          <span>C++</span>
+          <span>Python</span>
+          <span>JavaScript</span>
+          <span>HTML/CSS</span>
+          <span>MS SQL</span>
+          <span>Selenium</span>
+          <span>TensorFlow</span>
+          <span>OpenGL</span>
+          <span>Git</span>
+        </div>
+        
+        <h3 style="margin-top: 2rem;">Languages</h3>
+        <div class="languages">
+          <span>English: Fluent</span>
+          <span>Bengali: Native</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+  <h2 class="section-title">Tools I Use</h2>
+  <div class="tools-grid">
+    <!-- Development Tools -->
+    <div class="tool-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+      <span>VS Code</span>
+    </div>
+    
+    <div class="tool-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" alt="PyCharm">
+      <span>PyCharm</span>
+    </div>
+
+    <div class="tool-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman">
+      <span>Postman</span>
+    </div>
+
+      <div class="tool-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+        <span>MySQL</span>
+      </div>
+          
+    <div class="tool-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Desktop">
+      <span>GitHub Desktop</span>
+    </div>
+
+
+    <div class="tool-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git Bash">
+      <span>Git Bash</span>
+    </div>
+
+    
+    <!-- Testing Tools -->
+    <div class="tool-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" alt="Selenium">
+      <span>Selenium</span>
+      </div>
+
+    <!-- Add more tools as needed -->
+  </div>
+</section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+      
+      <div class="card project-card">
+        <img src="Images/Weather App.png" alt="Weather App" class="project-image">        
+        <div class="project-overlay">
+          <h4>Weather App</h4>
+          <p>Get real-time weather updates by city using OpenWeatherMap API.</p>
+          
+          <!-- NEW flex container -->
+          <div class="button-group">
+            <a href="https://github.com/Israk-Hossain-Pantho/Weather-App" class="btn btn-outline" target="_blank">View Details</a>
+            <a href="https://israk-hossain-pantho.github.io/Weather-App/" class="btn btn-outline" target="_blank">Live</a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card project-card">
+        <img src="Images/Mountain View.png" alt="Mountain View Computer Graphics Project" class="project-image">        
+        <div class="project-overlay">
+          <h4>Mountain View </h4>
+          <p>A realistic nature scene, featuring animated mountains, rivers, and weather effects.</p>
+          
+          <!-- NEW flex container -->
+          <div class="button-group">
+            <a href="https://github.com/Israk-Hossain-Pantho/Mountain-View-Computer-Graphics-Project" class="btn btn-outline" target="_blank">View Details</a>
+            <a href="https://www.youtube.com/watch?v=nFTefqJu1cs" class="btn btn-outline" target="_blank">Youtube</a>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="card project-card">
+        <img src="Images/E-Learning platform.png" alt="E-Learning platform" class="project-image">
+        <div class="project-overlay">
+          <h4>E-Learning platform</h4>
+          <p>E-learning portal with course enrollment, quizzes, and progress tracking.</p>
+          <a href="https://github.com/Israk-Hossain-Pantho/E-Learning-platform" class="btn btn-outline" style="margin-top: 0.5rem;" target="_blank">View Details</a>
+        </div>
+      </div>
+
+       <div class="card project-card">
+        <img src="Images/Face Mask Detection.png" alt="Face Mask Detection" class="project-image">
+        <div class="project-overlay">
+          <h4>Face Mask Detection</h4>
+          <p>Real-time detection of correct, incorrect, or missing face masks via webcam.</p>
+          <a href="https://github.com/Israk-Hossain-Pantho/Face-Mask-Detection" class="btn btn-outline" style="margin-top: 0.5rem;" target="_blank">View Details</a>
+        </div>
+      </div>
+
+      <div class="card project-card">
+        <img src="Images/Gun Detection Project.png" alt="Gun Detection Project" class="project-image">
+        <div class="project-overlay">
+          <h4>Gun Detection Project</h4>
+          <p>Detects presence of guns in live video streams using a trained deep learning model.</p>
+          <a href="https://github.com/Israk-Hossain-Pantho/Gun-Detection-Project/tree/main" class="btn btn-outline" style="margin-top: 0.5rem;" target="_blank">View Details</a>
+        </div>
+      </div>
+
+      <div class="card project-card">
+        <img src="Images/wordly.png" alt="wordly" class="project-image">
+        <div class="project-overlay">
+          <h4>Wordly</h4>
+          <p>Interactive word game to challenge your vocabulary and spelling skills.</p>
+          <a href="https://github.com/Israk-Hossain-Pantho/Wordly" class="btn btn-outline" style="margin-top: 0.5rem;" target="_blank">View Details</a>
+        </div>
+      </div>
+
+      <div class="card project-card">
+        <img src="Images/Tic Tac Toe.png" alt="Tic Tac Toe" class="project-image">
+        <div class="project-overlay">
+          <h4>Tic Tac Toe Game</h4>
+          <p>Interactive Tic Tac Toe game built in C#, featuring an AI opponent to challenge your skills.</p>
+          <a href="https://github.com/Israk-Hossain-Pantho/Tic-Tac-Toe-game" class="btn btn-outline" style="margin-top: 0.5rem;" target="_blank">View Details</a>
+        </div>
+      </div>
+
+      <div class="card project-card">
+        <img src="Images/Plagiarism Detection using Python.png" alt="Plagiarism Detection using Python" class="project-image">
+        <div class="project-overlay">
+          <h4>Plagiarism Detection using Python</h4>
+          <p>Automated plagiarism detection system comparing text similarity in Python.</p>
+          <a href="https://github.com/Israk-Hossain-Pantho/Plagiarism-Detection-using-Python" class="btn btn-outline" style="margin-top: 0.5rem;" target="_blank">View Details</a>
+        </div>
+      </div>
+
+
+      <div class="card project-card">
+        <img src="Images/Vehicle Control System.png" alt="Vehicle Control System" class="project-image">
+        <div class="project-overlay">
+          <h4>Vehicle Control System</h4>
+          <p>System for managing and verifying vehicle/driver data using optimized SQL queries and reports.</p>
+          <a href="https://github.com/Israk-Hossain-Pantho/Vehicle-Control-System" class="btn btn-outline" style="margin-top: 0.5rem;" target="_blank" >View Details</a>
+        </div>
+      </div>
+      
+      <div class="card project-card">
+        <img src="Images/Automated Web Testing.png" alt="Automated Web Testing" class="project-image">
+        <div class="project-overlay">
+          <h4>Automated Web Testing</h4>
+          <p>Detailed documentation of automated website testing using Selenium, covering environment setup and test code samples.</p>
+          <a href="https://github.com/Israk-Hossain-Pantho/Automated-Web-Testing" class="btn btn-outline" style="margin-top: 0.5rem;" target="_blank">View Details</a>
+        </div>
+      </div>
+      
+      <div class="card project-card">
+        <img src="Images/medical care center.png" alt="medical care center" class="project-image">
+        <div class="project-overlay">
+          <h4>Medical Care Center</h4>
+          <p>Industry-standard SQA report outlining test planning, automation execution, and quality metrics analysis.</p>
+          <a href="https://github.com/Israk-Hossain-Pantho/Medical-Care-Center" class="btn btn-outline" style="margin-top: 0.5rem;" target="_blank">View Details</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div>
+            <h4>Phone</h4>
+            <p>01992589044</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <p>panthofdh@gmail.com</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>
+            <h4>Location</h4>
+            <p>Nikunja 2, Dhaka, Bangladesh</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+  <h3>Send Me a Message</h3>
+  <form id="contact-form" action="https://formsubmit.co/panthofdh97@gmail.com" method="POST">
+    <!-- Form Fields -->
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    
+    <!-- FormSubmit Config -->
+    <input type="hidden" name="_next" value="https://yourportfolio.com/thank-you.html">
+    <input type="hidden" name="_captcha" value="false">
+    
+    <!-- Submit Button -->
+    <button type="submit" id="submit-btn">Send</button>
+  </form>
+  
+  <!-- Popup Notification (initially hidden) -->
+  <div id="popup-notification" class="popup">
+    <div class="popup-content">
+      <span id="popup-message"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const popup = document.getElementById('popup-notification');
+    const popupMessage = document.getElementById('popup-message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      
+      // Create hidden iframe for submission
+      const iframe = document.createElement('iframe');
+      iframe.name = 'formsubmit-iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      
+      // Handle response
+      iframe.onload = function() {
+        // Assume success (FormSubmit will redirect to _next on success)
+        showPopup(
+  `Thank you for contacting me! I'll respond shortly. \nYour message has been securely delivered to my mailbox.`, 
+  'success'
+);
+        form.reset();
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send';
+          document.body.removeChild(iframe);
+        }, 3000);
+      };
+      
+      // Fallback error handling
+      setTimeout(() => {
+        if (submitBtn.disabled) { // If still sending after 8 seconds
+          showPopup("We encountered an issue sending your message. Please try again later.", 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send';
+        }
+      }, 8000);
+      
+      // Submit form
+      form.target = 'formsubmit-iframe';
+      form.submit();
+    });
+    
+    function showPopup(message, type) {
+      popupMessage.textContent = message;
+      popup.className = `popup show ${type}`;
+      
+      // Auto-hide after 3 seconds
+      setTimeout(() => {
+        popup.classList.remove('show');
+      }, 3000);
+    }
+  });
+</script>
+
+  </section>
+
+  <footer>
+  <div class="logo" style="font-size: 2rem;">Israk Hossain Pantho</div>
+  <div class="social-links">
+    <a href="https://github.com/Israk-Hossain-Pantho" class="social-link" target="_blank" rel="noopener noreferrer">
+  <i class="fab fa-github"></i>
+  <span class="tooltip-text">GitHub</span>
+</a>
+
+<a href="https://www.linkedin.com/in/israk-hossain-pantho-367024260/" class="social-link" target="_blank" rel="noopener noreferrer">
+  <i class="fab fa-linkedin-in"></i>
+  <span class="tooltip-text">LinkedIn</span>
+</a>
+
+<a href="https://www.hackerrank.com/profile/panthofdh97" class="social-link" target="_blank" rel="noopener noreferrer">
+  <i class="fab fa-hackerrank"></i>
+  <span class="tooltip-text">HackerRank</span>
+</a>
+
+<a href="https://codeforces.com/profile/Israk_Hossain_Pantho" class="social-link" target="_blank" rel="noopener noreferrer">
+  <i class="fas fa-code"></i>
+  <span class="tooltip-text">Codeforces</span>
+</a>
+
+  </div>
+  <p class="copyright">© 2025 Israk Hossain Pantho. All Rights Reserved.</p>
+</footer>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const texts = [
+    " ",
+    "Machine Learning",
+    "Frontend Development", 
+    "Backend Development",
+    "Image Processing"
+  ];
+  const element = document.querySelector('.typewriter');
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 100; // milliseconds per character
+
+  function type() {
+    const currentText = texts[textIndex];
+    
+    if (isDeleting) {
+      // Deleting text
+      element.textContent = currentText.substring(0, charIndex - 1);
+      charIndex--;
+      typingSpeed = 50; // Faster when deleting
+    } else {
+      // Adding text
+      element.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+      typingSpeed = 100;
+    }
+
+    // Check if current text is complete
+    if (!isDeleting && charIndex === currentText.length) {
+      // Pause at end of typing
+      typingSpeed = 1000;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      // Move to next text
+      isDeleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      typingSpeed = 500; // Pause before next text
+    }
+
+    setTimeout(type, typingSpeed);
+  }
+
+  // Start the typing effect
+  type();
+});
+</script>
+  
+</body>
+</html>
