@@ -1,7 +1,7 @@
 # Portfolio Website
 
 [![Live Demo](https://img.shields.io/badge/View-Live%20Demo-brightgreen?style=for-the-badge)](https://israk-hossain-pantho.github.io/Portfolio-Website/) <!-- Replace with your actual URL -->
-![Portfolio Screenshot](https://i.imgur.com/placeholder.png) <!-- Add a screenshot later -->
+
 
 A modern, responsive portfolio website showcasing my projects, skills, and contact information. Built with pure HTML, CSS, and JavaScript.
 
